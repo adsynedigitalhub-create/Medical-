@@ -1,0 +1,778 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Reviews & Contact | Purple Medical</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        :root { --bg: #FBFAFF; --light: #E6E1FF; --medium: #B8A7FF; --primary: #6A5ACD; --dark: #2A2455; }
+        body { font-family: 'Inter', sans-serif; background: #FBFAFF; overflow-x: hidden; }
+
+        /* ===== TOP BAR ===== */
+        .topbar { background: var(--dark); padding: 12px 0; }
+        .container { max-width: 1400px; margin: 0 auto; padding: 0 30px; }
+        .topbar .container { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 20px; }
+        .topbar-left { display: flex; flex-wrap: wrap; gap: 30px; }
+        .topbar-left a { color: white; text-decoration: none; display: flex; align-items: center; gap: 8px; font-size: 13px; transition: 0.3s; }
+        .topbar-left a:hover { color: var(--medium); }
+        .social-icons { display: flex; gap: 25px; }
+        .social-icons a { color: white; font-size: 14px; transition: 0.3s; }
+        .social-icons a:hover { color: var(--medium); transform: translateY(-2px); }
+
+        /* ===== MAIN HEADER ===== */
+        .main-header { background: white; padding: 18px 0; border-bottom: 1px solid #eee; position: sticky; top: 0; z-index: 100; }
+        .main-header .container { display: flex; align-items: center; justify-content: space-between; }
+        .logo h1 { font-family: 'Playfair Display', serif; font-size: 28px; font-weight: 800; background: linear-gradient(135deg, var(--dark), var(--primary)); -webkit-background-clip: text; background-clip: text; color: transparent; }
+        .nav-menu ul { display: flex; list-style: none; gap: 35px; }
+        .nav-menu ul li a { color: var(--dark); text-decoration: none; font-weight: 500; font-size: 15px; transition: 0.3s; }
+        .nav-menu ul li a:hover, .nav-menu ul li a.active { color: var(--primary); }
+        .appointment-btn { background: var(--primary); color: white; padding: 10px 28px; border-radius: 50px; text-decoration: none; font-weight: 600; font-size: 14px; transition: 0.3s; }
+        .appointment-btn:hover { background: var(--dark); transform: translateY(-2px); }
+        .mobile-toggle { display: none; font-size: 28px; cursor: pointer; color: var(--dark); background: none; border: none; }
+
+        /* ===== TESTIMONIALS SECTION ===== */
+        .testimonials-section {
+            padding: 80px 0;
+            background: linear-gradient(135deg, #FBFAFF, white);
+        }
+        .testimonials-header {
+            text-align: center;
+            margin-bottom: 60px;
+            padding: 0 20px;
+        }
+        .testimonials-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, #6A5ACD, #2A2455);
+            padding: 5px 18px;
+            border-radius: 50px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            color: white;
+            letter-spacing: 1px;
+            margin-bottom: 15px;
+        }
+        .testimonials-header h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: #2A2455;
+            margin-bottom: 10px;
+        }
+        .testimonials-header h2 span {
+            color: #6A5ACD;
+            border-bottom: 3px solid #6A5ACD;
+            padding-bottom: 5px;
+        }
+        .testimonials-header p {
+            color: #6a6a8a;
+            font-size: 0.9rem;
+            max-width: 550px;
+            margin: 0 auto;
+        }
+        .testimonials-grid {
+            max-width: 1300px;
+            margin: 0 auto;
+            padding: 0 30px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 30px;
+        }
+        .bubble-card {
+            width: 280px;
+            background: white;
+            border-radius: 28px 28px 28px 12px;
+            padding: 22px 20px;
+            position: relative;
+            transition: all 0.35s ease;
+            border: 1px solid rgba(106, 90, 205, 0.08);
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.04);
+        }
+        .bubble-card::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 25px;
+            border-width: 10px 10px 0 0;
+            border-style: solid;
+            border-color: white transparent;
+        }
+        .bubble-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 20px 35px rgba(106, 90, 205, 0.1);
+            border-color: #6A5ACD;
+        }
+        .card-1 { margin-top: 0; }
+        .card-2 { margin-top: 25px; }
+        .card-3 { margin-top: 0; }
+        .card-4 { margin-top: 35px; }
+        .card-5 { margin-top: 15px; }
+        .card-6 { margin-top: 0; }
+        .card-7 { margin-top: 30px; }
+        .card-8 { margin-top: 10px; }
+        .bubble-icon {
+            width: 45px;
+            height: 45px;
+            background: #E6E1FF;
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 18px;
+            transition: 0.3s;
+        }
+        .bubble-card:hover .bubble-icon {
+            background: #6A5ACD;
+        }
+        .bubble-card:hover .bubble-icon i {
+            color: white;
+        }
+        .bubble-icon i {
+            font-size: 1.3rem;
+            color: #6A5ACD;
+            transition: 0.3s;
+        }
+        .patient-name {
+            font-size: 1rem;
+            font-weight: 700;
+            color: #2A2455;
+            margin-bottom: 2px;
+        }
+        .patient-dept {
+            font-size: 0.6rem;
+            color: #6A5ACD;
+            font-weight: 600;
+            display: block;
+            margin-bottom: 10px;
+            letter-spacing: 0.5px;
+        }
+        .rating-stars {
+            display: flex;
+            gap: 3px;
+            margin-bottom: 12px;
+        }
+        .rating-stars i {
+            color: #f5b042;
+            font-size: 0.7rem;
+        }
+        .testimonial-text {
+            font-size: 0.78rem;
+            color: #555;
+            line-height: 1.55;
+            margin-bottom: 18px;
+        }
+        .progress-wrapper {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-top: 5px;
+        }
+        .progress-circle {
+            width: 42px;
+            height: 42px;
+            position: relative;
+            flex-shrink: 0;
+        }
+        .progress-circle svg {
+            width: 100%;
+            height: 100%;
+            transform: rotate(-90deg);
+        }
+        .progress-circle circle {
+            fill: none;
+            stroke-width: 2.5;
+            stroke-linecap: round;
+        }
+        .progress-circle .circle-bg {
+            stroke: #E6E1FF;
+        }
+        .progress-circle .circle-fill {
+            stroke: #6A5ACD;
+            stroke-dasharray: 119.38;
+            stroke-dashoffset: calc(119.38 - (119.38 * var(--percent)) / 100);
+            transition: stroke-dashoffset 0.5s ease;
+        }
+        .progress-circle .circle-text {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 0.65rem;
+            font-weight: 700;
+            color: #2A2455;
+        }
+        .progress-label {
+            font-size: 0.6rem;
+            color: #888;
+            line-height: 1.3;
+        }
+        .progress-label strong {
+            color: #6A5ACD;
+            font-size: 0.7rem;
+        }
+
+        /* ===== PAGE TITLE ===== */
+        .page-title { background: linear-gradient(135deg, var(--light), white); padding: 50px 0 25px; text-align: center; }
+        .page-title h1 { font-family: 'Playfair Display', serif; font-size: 2.5rem; color: var(--dark); }
+        .page-title h1 span { color: var(--primary); border-bottom: 3px solid var(--primary); padding-bottom: 5px; }
+        .page-title p { color: #6a6a8a; max-width: 700px; margin: 15px auto 0; font-size: 1rem; }
+        .breadcrumbs { background: white; padding: 12px 0; border-bottom: 1px solid #eee; }
+        .breadcrumbs ol { display: flex; list-style: none; gap: 10px; }
+        .breadcrumbs a { color: var(--primary); text-decoration: none; }
+        .breadcrumbs .current { color: #888; }
+
+        /* ===== CONTACT SECTION ===== */
+        .contact-section { padding: 60px 0; background: var(--bg); }
+        .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 50px; align-items: start; }
+        .contact-form-wrapper {
+            background: white;
+            border-radius: 28px;
+            padding: 35px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            border: 1px solid rgba(106, 90, 205, 0.1);
+        }
+        .form-header { margin-bottom: 25px; }
+        .form-header h2 { font-size: 1.8rem; color: var(--dark); margin-bottom: 8px; }
+        .form-header p { color: #6a6a8a; font-size: 0.9rem; }
+        .form-group { margin-bottom: 20px; }
+        .form-group label { display: block; font-size: 0.85rem; font-weight: 600; color: var(--dark); margin-bottom: 6px; }
+        .form-group label span { color: #ef4444; }
+        .form-group input, .form-group select, .form-group textarea {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1.5px solid #E6E1FF;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            font-family: 'Inter', sans-serif;
+            transition: 0.3s;
+            outline: none;
+            background: white;
+        }
+        .form-group textarea { border-radius: 20px; resize: vertical; }
+        .checkbox-row {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 25px;
+            flex-wrap: wrap;
+        }
+        .checkbox-row input { width: 18px; height: 18px; cursor: pointer; accent-color: #6A5ACD; }
+        .checkbox-row label { font-size: 0.85rem; color: var(--dark); cursor: pointer; margin: 0; }
+        .emergency-badge {
+            background: #fee2e2;
+            color: #ef4444;
+            padding: 4px 12px;
+            border-radius: 50px;
+            font-size: 0.7rem;
+            font-weight: 600;
+        }
+        .submit-btn {
+            background: #6A5ACD;
+            color: white;
+            border: none;
+            padding: 14px 28px;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.3s;
+            width: 100%;
+        }
+        .submit-btn:hover { background: #2A2455; transform: translateY(-2px); }
+
+        /* Map Side */
+        .map-wrapper {
+            background: white;
+            border-radius: 28px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            border: 1px solid rgba(106, 90, 205, 0.1);
+            height: 100%;
+        }
+        .map-wrapper h3 { padding: 20px 25px 0; font-size: 1.3rem; color: var(--dark); }
+        .map-wrapper p { padding: 5px 25px 15px; color: #6a6a8a; font-size: 0.85rem; }
+        .map-container { width: 100%; height: 450px; }
+        .map-container iframe { width: 100%; height: 100%; border: 0; }
+        .contact-info-side {
+            padding: 20px 25px;
+            border-top: 1px solid #E6E1FF;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: space-between;
+        }
+        .info-item { display: flex; align-items: center; gap: 10px; }
+        .info-item i {
+            width: 35px;
+            height: 35px;
+            background: #E6E1FF;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #6A5ACD;
+            font-size: 1rem;
+        }
+        .info-item span { font-size: 0.85rem; color: #555; }
+
+        /* ===== FOOTER ===== */
+        .footer {
+            background: #2A2455;
+            color: #B8A7FF;
+            padding: 50px 0 30px;
+            margin-top: 0;
+        }
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        .footer-col h4 {
+            font-size: 1.1rem;
+            margin-bottom: 20px;
+            position: relative;
+            display: inline-block;
+            color: #E6E1FF;
+        }
+        .footer-col h4::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 0;
+            width: 40px;
+            height: 2px;
+            background: #6A5ACD;
+        }
+        .footer-col p, .footer-col ul li a {
+            color: #B8A7FF;
+            text-decoration: none;
+            line-height: 1.8;
+            font-size: 0.85rem;
+            transition: 0.3s;
+        }
+        .footer-col ul { list-style: none; }
+        .footer-col ul li a:hover { color: #E6E1FF; padding-left: 5px; }
+        .footer-col ul li { margin-bottom: 8px; }
+        .footer-social {
+            display: flex;
+            gap: 12px;
+            margin-top: 15px;
+        }
+        .footer-social a {
+            width: 35px;
+            height: 35px;
+            background: rgba(230, 225, 255, 0.15);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #E6E1FF;
+            transition: 0.3s;
+        }
+        .footer-social a:hover {
+            background: #6A5ACD;
+            color: white;
+            transform: translateY(-3px);
+        }
+        .footer-col:last-child ul li {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 12px;
+        }
+        .footer-col:last-child ul li i {
+            width: 22px;
+            color: #E6E1FF;
+            font-size: 0.9rem;
+        }
+        .footer-bottom {
+            text-align: center;
+            padding-top: 25px;
+            border-top: 1px solid rgba(184, 167, 255, 0.2);
+            font-size: 0.8rem;
+            color: #B8A7FF;
+        }
+
+        @media (max-width: 1000px) {
+            .testimonials-grid { justify-content: center; }
+            .card-1, .card-2, .card-3, .card-4, .card-5, .card-6, .card-7, .card-8 { margin-top: 0; }
+        }
+        @media (max-width: 992px) {
+            .contact-grid { grid-template-columns: 1fr; }
+            .mobile-toggle { display: block; }
+            .nav-menu ul { display: none; position: absolute; top: 70px; right: 20px; background: white; flex-direction: column; padding: 20px; border-radius: 16px; gap: 15px; box-shadow: 0 10px 25px rgba(0,0,0,0.1); z-index: 101; }
+            .nav-menu ul.show { display: flex; }
+            .nav-menu { justify-content: flex-end; }
+            .footer-content { grid-template-columns: repeat(2, 1fr); }
+        }
+        @media (min-width: 993px) { .mobile-toggle { display: none !important; } .nav-menu ul { display: flex !important; } }
+        @media (max-width: 768px) {
+            .container { padding: 0 20px; }
+            .testimonials-section { padding: 50px 0; }
+            .testimonials-header h2 { font-size: 1.8rem; }
+            .bubble-card { width: 100%; max-width: 320px; margin: 0 auto 15px; }
+            .contact-form-wrapper { padding: 25px; }
+            .footer-content { grid-template-columns: 1fr; text-align: center; }
+            .footer-col h4::after { left: 50%; transform: translateX(-50%); }
+            .footer-col:last-child ul li { justify-content: center; }
+            .footer-social { justify-content: center; }
+            .map-container { height: 350px; }
+        }
+
+        /* Global responsive improvements */
+        @media (max-width: 1100px) {
+            .container { padding: 0 20px; }
+            .main-header .container { flex-wrap: wrap; justify-content: space-between; gap: 18px; }
+            .hero-container, .half-grid, .services-flex, .dept-detail-layout, .contact-grid, .blog-layout, .stats-wrapper, .doctor-highlight-footer { flex-direction: column; }
+            .half-grid, .dept-services-grid, .doctors-grid, .footer-content, .blog-grid, .contact-grid { grid-template-columns: 1fr; }
+            .services-right { grid-template-columns: 1fr; }
+            .swiper { width: 100%; }
+        }
+        @media (max-width: 992px) {
+            .mobile-toggle { display: block; }
+            .nav-menu ul { display: none; position: absolute; top: 70px; right: 20px; width: calc(100% - 40px); background: white; flex-direction: column; padding: 18px; border-radius: 16px; gap: 14px; box-shadow: 0 10px 25px rgba(0,0,0,0.1); z-index: 101; }
+            .nav-menu ul.show { display: flex; }
+            .footer-content { grid-template-columns: repeat(2, 1fr); gap: 30px; }
+            .hero-image img, .doctor-highlight-img img, .doctor-img img, .services-left img, .dept-card img { max-width: 100%; height: auto; }
+            .hero-title { font-size: 2.2rem; }
+            .page-title h1 { font-size: 2rem; }
+        }
+        @media (max-width: 768px) {
+            .container { padding: 0 18px; }
+            .hero-title { font-size: 1.95rem; }
+            .page-title h1 { font-size: 1.9rem; }
+            .hero-container, .half-grid, .services-flex, .dept-detail-layout, .contact-grid, .blog-layout, .stats-row, .footer-content { gap: 18px; }
+            .footer-content { grid-template-columns: 1fr; text-align: center; }
+            .doctor-highlight-card, .service-card-inner, .dept-card, .blog-card, .doctor-card { min-height: auto; }
+            .appointment-btn, .consult-btn, .explore-services-button, .doctor-highlight-cta, .view-all-btn { width: 100%; justify-content: center; }
+        }
+        @media (max-width: 640px) {
+            .topbar .container { flex-direction: column; align-items: flex-start; gap: 12px; }
+            .hero-title { font-size: 1.7rem; }
+            .nav-menu ul { width: calc(100% - 20px); right: 10px; }
+            .section-header h2 { font-size: 1.65rem; }
+            .footer-col:last-child ul li { justify-content: center; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- TOP BAR -->
+    <div class="topbar">
+        <div class="container">
+            <div class="topbar-left">
+                <a href="mailto:contact@purplemedical.com"><i class="bi bi-envelope-fill"></i> contact@purplemedical.com</a>
+                <a href="tel:+155895548855"><i class="bi bi-telephone-fill"></i> +1 5589 55488 55</a>
+            </div>
+            <div class="social-icons">
+                <a href="#"><i class="bi bi-twitter-x"></i></a>
+                <a href="#"><i class="bi bi-facebook"></i></a>
+                <a href="#"><i class="bi bi-instagram"></i></a>
+                <a href="#"><i class="bi bi-linkedin"></i></a>
+            </div>
+        </div>
+    </div>
+
+    <!-- MAIN HEADER -->
+    <div class="main-header">
+        <div class="container">
+            <div class="logo"><h1>Purple Medical</h1></div>
+            <nav class="nav-menu">
+                <ul id="navMenu">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="departments.html">Departments</a></li>
+                    <li><a href="services.html">Services</a></li>
+                    <li><a href="doctors.html">Doctors</a></li>
+                    <li><a href="news.html">News</a></li>
+                    <li><a href="#" class="active">Reviews</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+                <button class="mobile-toggle" id="menuToggle"><i class="bi bi-list"></i></button>
+            </nav>
+            <a href="#" class="appointment-btn">Book Appointment</a>
+        </div>
+    </div>
+
+    <!-- ===== TESTIMONIALS SECTION ===== -->
+    <div class="testimonials-section">
+        <div class="testimonials-header">
+            <div class="testimonials-badge">
+                <i class="bi bi-chat-heart-fill"></i> Patient Stories
+            </div>
+            <h2>What Our <span>Patients Say</span></h2>
+            <p>Real experiences from people who trusted us with their health journey</p>
+        </div>
+
+        <div class="testimonials-grid">
+            
+            <div class="bubble-card card-1">
+                <div class="bubble-icon"><i class="bi bi-chat-quote"></i></div>
+                <h4 class="patient-name">Sarah Ahmed</h4>
+                <span class="patient-dept">Cardiology</span>
+                <div class="rating-stars"><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i></div>
+                <p class="testimonial-text">"Exceptional care from Dr. Johnson. He explained everything and made me feel completely at ease."</p>
+                <div class="progress-wrapper">
+                    <div class="progress-circle" style="--percent: 95"><svg viewBox="0 0 38 38"><circle class="circle-bg" cx="19" cy="19" r="17"></circle><circle class="circle-fill" cx="19" cy="19" r="17"></circle></svg><span class="circle-text">95%</span></div>
+                    <div class="progress-label"><strong>98%</strong> would recommend</div>
+                </div>
+            </div>
+
+            <div class="bubble-card card-2">
+                <div class="bubble-icon"><i class="bi bi-heart-pulse"></i></div>
+                <h4 class="patient-name">Michael Chen</h4>
+                <span class="patient-dept">Orthopedics</span>
+                <div class="rating-stars"><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i></div>
+                <p class="testimonial-text">"Quick appointments, friendly staff, and state-of-the-art facilities. My whole family trusts Purple Medical."</p>
+                <div class="progress-wrapper">
+                    <div class="progress-circle" style="--percent: 92"><svg viewBox="0 0 38 38"><circle class="circle-bg" cx="19" cy="19" r="17"></circle><circle class="circle-fill" cx="19" cy="19" r="17"></circle></svg><span class="circle-text">92%</span></div>
+                    <div class="progress-label"><strong>94%</strong> satisfaction</div>
+                </div>
+            </div>
+
+            <div class="bubble-card card-3">
+                <div class="bubble-icon"><i class="bi bi-shield-check"></i></div>
+                <h4 class="patient-name">Priya Sharma</h4>
+                <span class="patient-dept">Emergency</span>
+                <div class="rating-stars"><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i></div>
+                <p class="testimonial-text">"The emergency team saved my father's life with their quick response. Forever grateful to Purple Medical."</p>
+                <div class="progress-wrapper">
+                    <div class="progress-circle" style="--percent: 98"><svg viewBox="0 0 38 38"><circle class="circle-bg" cx="19" cy="19" r="17"></circle><circle class="circle-fill" cx="19" cy="19" r="17"></circle></svg><span class="circle-text">98%</span></div>
+                    <div class="progress-label"><strong>100%</strong> response rate</div>
+                </div>
+            </div>
+
+            <div class="bubble-card card-4">
+                <div class="bubble-icon"><i class="bi bi-eye"></i></div>
+                <h4 class="patient-name">David Wilson</h4>
+                <span class="patient-dept">General Medicine</span>
+                <div class="rating-stars"><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-half"></i></div>
+                <p class="testimonial-text">"Clean environment, modern equipment, and doctors who actually listen. Telemedicine is a lifesaver."</p>
+                <div class="progress-wrapper">
+                    <div class="progress-circle" style="--percent: 88"><svg viewBox="0 0 38 38"><circle class="circle-bg" cx="19" cy="19" r="17"></circle><circle class="circle-fill" cx="19" cy="19" r="17"></circle></svg><span class="circle-text">88%</span></div>
+                    <div class="progress-label"><strong>90%</strong> tele-satisfaction</div>
+                </div>
+            </div>
+
+            <div class="bubble-card card-5">
+                <div class="bubble-icon"><i class="bi bi-baby"></i></div>
+                <h4 class="patient-name">Aisha Khan</h4>
+                <span class="patient-dept">Pediatrics</span>
+                <div class="rating-stars"><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i></div>
+                <p class="testimonial-text">"My daughter loves coming here! The pediatric team makes every visit fun and stress-free."</p>
+                <div class="progress-wrapper">
+                    <div class="progress-circle" style="--percent: 96"><svg viewBox="0 0 38 38"><circle class="circle-bg" cx="19" cy="19" r="17"></circle><circle class="circle-fill" cx="19" cy="19" r="17"></circle></svg><span class="circle-text">96%</span></div>
+                    <div class="progress-label"><strong>97%</strong> parent approval</div>
+                </div>
+            </div>
+
+            <div class="bubble-card card-6">
+                <div class="bubble-icon"><i class="bi bi-droplet"></i></div>
+                <h4 class="patient-name">Omar Hassan</h4>
+                <span class="patient-dept">Surgery</span>
+                <div class="rating-stars"><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star"></i></div>
+                <p class="testimonial-text">"Affordable treatment without compromising quality. The payment plan made my surgery possible."</p>
+                <div class="progress-wrapper">
+                    <div class="progress-circle" style="--percent: 85"><svg viewBox="0 0 38 38"><circle class="circle-bg" cx="19" cy="19" r="17"></circle><circle class="circle-fill" cx="19" cy="19" r="17"></circle></svg><span class="circle-text">85%</span></div>
+                    <div class="progress-label"><strong>88%</strong> affordability</div>
+                </div>
+            </div>
+
+            <div class="bubble-card card-7">
+                <div class="bubble-icon"><i class="bi bi-capsule"></i></div>
+                <h4 class="patient-name">Fatima Khan</h4>
+                <span class="patient-dept">Dermatology</span>
+                <div class="rating-stars"><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i></div>
+                <p class="testimonial-text">"My skin has never looked better. Excellent care and follow-up support from the dermatology team."</p>
+                <div class="progress-wrapper">
+                    <div class="progress-circle" style="--percent: 94"><svg viewBox="0 0 38 38"><circle class="circle-bg" cx="19" cy="19" r="17"></circle><circle class="circle-fill" cx="19" cy="19" r="17"></circle></svg><span class="circle-text">94%</span></div>
+                    <div class="progress-label"><strong>96%</strong> would return</div>
+                </div>
+            </div>
+
+            <div class="bubble-card card-8">
+                <div class="bubble-icon"><i class="bi bi-telephone"></i></div>
+                <h4 class="patient-name">Ahmed Raza</h4>
+                <span class="patient-dept">Telemedicine</span>
+                <div class="rating-stars"><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-half"></i></div>
+                <p class="testimonial-text">"Convenient online consultations that fit my busy schedule. Doctors are attentive even virtually."</p>
+                <div class="progress-wrapper">
+                    <div class="progress-circle" style="--percent: 90"><svg viewBox="0 0 38 38"><circle class="circle-bg" cx="19" cy="19" r="17"></circle><circle class="circle-fill" cx="19" cy="19" r="17"></circle></svg><span class="circle-text">90%</span></div>
+                    <div class="progress-label"><strong>92%</strong> convenience</div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- PAGE TITLE FOR CONTACT -->
+    <div class="page-title">
+        <div class="container">
+            <h1>Get in <span>Touch</span></h1>
+            <p>We're here to help. Reach out to us for appointments, inquiries, or emergency assistance</p>
+        </div>
+    </div>
+    <div class="breadcrumbs">
+        <div class="container">
+            <ol>
+                <li><a href="index.html">Home</a></li>
+                <li class="current">Contact</li>
+            </ol>
+        </div>
+    </div>
+
+    <!-- ===== CONTACT SECTION ===== -->
+    <div class="contact-section">
+        <div class="container">
+            <div class="contact-grid">
+                
+                <div class="contact-form-wrapper">
+                    <div class="form-header">
+                        <h2>Schedule Your Visit</h2>
+                        <p>Fill out the form and our team will get back to you within 24 hours</p>
+                    </div>
+                    <form id="contactForm" action="#" method="POST">
+                        <div class="form-group">
+                            <label>Full Name <span>*</span></label>
+                            <input type="text" placeholder="Enter your full name" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Email Address <span>*</span></label>
+                            <input type="email" placeholder="your@email.com" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Phone Number <span>*</span></label>
+                            <input type="tel" placeholder="+1 234 567 8900" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Select Department</label>
+                            <select>
+                                <option value="">Select a department</option>
+                                <option>Cardiology</option>
+                                <option>Neurology</option>
+                                <option>Orthopedics</option>
+                                <option>Pediatrics</option>
+                                <option>Ophthalmology</option>
+                                <option>Dermatology</option>
+                                <option>Dental Care</option>
+                                <option>General Medicine</option>
+                                <option>Emergency</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Preferred Appointment Time</label>
+                            <select>
+                                <option value="">Select preferred time</option>
+                                <option>Morning (8:00 AM - 12:00 PM)</option>
+                                <option>Afternoon (12:00 PM - 4:00 PM)</option>
+                                <option>Evening (4:00 PM - 8:00 PM)</option>
+                                <option>Emergency (Immediate)</option>
+                                <option>As soon as possible</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Detailed Issue / Symptoms</label>
+                            <textarea rows="4" placeholder="Please describe your medical concern, symptoms, or reason for visit..."></textarea>
+                        </div>
+                        <div class="checkbox-row">
+                            <input type="checkbox" id="emergencyCheck">
+                            <label for="emergencyCheck">This is an emergency — I need immediate assistance</label>
+                            <span class="emergency-badge">⚠️ Urgent</span>
+                        </div>
+                        <button type="submit" class="submit-btn">Submit Request <i class="bi bi-arrow-right"></i></button>
+                    </form>
+                </div>
+
+                <div class="map-wrapper">
+                    <h3>📍 Our Location</h3>
+                    <p>Dubai Healthcare City, Al Jaddaf, Dubai, UAE</p>
+                    <div class="map-container">
+                        <iframe 
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3608.456789012345!2d55.327456!3d25.223456!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3e5f43496b9c9b3b%3A0x8b7f5b8c6d4e2a1a!2sDubai%20Healthcare%20City!5e0!3m2!1sen!2sae!4v1700000000000!5m2!1sen!2sae" 
+                            allowfullscreen="" 
+                            loading="lazy" 
+                            referrerpolicy="no-referrer-when-downgrade">
+                        </iframe>
+                    </div>
+                    <div class="contact-info-side">
+                        <div class="info-item"><i class="bi bi-telephone-fill"></i><span>+1 (555) 123-4567</span></div>
+                        <div class="info-item"><i class="bi bi-envelope-fill"></i><span>info@purplemedical.com</span></div>
+                        <div class="info-item"><i class="bi bi-clock"></i><span>24/7 Emergency Available</span></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== FOOTER ===== -->
+    <div class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-col">
+                    <h4>Purple Medical</h4>
+                    <p>Providing excellence in healthcare with compassion, advanced technology, and patient-first approach.</p>
+                    <div class="footer-social">
+                        <a href="#"><i class="bi bi-facebook"></i></a>
+                        <a href="#"><i class="bi bi-twitter-x"></i></a>
+                        <a href="#"><i class="bi bi-instagram"></i></a>
+                        <a href="#"><i class="bi bi-linkedin"></i></a>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="services.html">Services</a></li>
+                        <li><a href="departments.html">Departments</a></li>
+                        <li><a href="doctors.html">Doctors</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Our Services</h4>
+                    <ul>
+                        <li><a href="#">Emergency Care</a></li>
+                        <li><a href="#">Cardiology</a></li>
+                        <li><a href="#">Neurology</a></li>
+                        <li><a href="#">Pediatrics</a></li>
+                        <li><a href="#">Orthopedics</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Contact Info</h4>
+                    <ul>
+                        <li><i class="bi bi-geo-alt"></i> Dubai Healthcare City, UAE</li>
+                        <li><i class="bi bi-telephone"></i> +1 (555) 123-4567</li>
+                        <li><i class="bi bi-envelope"></i> info@purplemedical.com</li>
+                        <li><i class="bi bi-clock"></i> Mon - Fri: 8AM - 8PM</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 Purple Medical. All rights reserved. | Designed with <i class="bi bi-heart-fill"></i> for better healthcare</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const menuToggle = document.getElementById('menuToggle');
+        const navMenu = document.getElementById('navMenu');
+        if (menuToggle && navMenu) {
+            menuToggle.addEventListener('click', () => navMenu.classList.toggle('show'));
+        }
+
+        const contactForm = document.getElementById('contactForm');
+        if (contactForm) {
+            contactForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                alert('Thank you for your request! Our team will contact you within 24 hours. For emergencies, please call our hotline immediately.');
+            });
+        }
+    </script>
+
+</body>
+</html>
